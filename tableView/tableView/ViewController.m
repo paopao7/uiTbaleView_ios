@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //初始化UITableView
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.bounds.size.width, 1500) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-30) style:UITableViewStylePlain];
  
     tableView.rowHeight = 60;
     
@@ -44,13 +44,42 @@
     
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.title = @"水果天堂";
-    
-    self.view.backgroundColor = [UIColor colorWithRed:1.00 green:0.91 blue:0.20 alpha:1.00];
+    self.view.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:250.0/255.0 alpha:1];
     
     [self.view addSubview:tableView];
     
     
+}
+
+// 设置表头的高度。如果使用自定义表头，该方法必须要实现，否则自定义表头无法执行，也不会报错
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+//自定义headerView
+- (UIView *) tableView:(UITableView *)_tableViews viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 50)];
+    
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 5, 40, 40)];
+    
+    logoImageView.image = [UIImage imageNamed:@"grape"];
+
+    UILabel *headerTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 0, 70, 50)];
+    
+    headerTitleLabel.textColor = [UIColor blackColor];
+    
+    headerTitleLabel.text = @"水果天堂";
+    
+    headerTitleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [headerView.layer setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:250.0/255.0 alpha:1].CGColor];
+    
+    [headerView addSubview:logoImageView];
+    
+    [headerView addSubview:headerTitleLabel];
+    
+    return headerView;
 }
 
 //定义行数
