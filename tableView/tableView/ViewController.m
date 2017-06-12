@@ -157,6 +157,10 @@
     
         //删除操作的实现
         [self.items removeObjectAtIndex:indexPath.row];
+        
+        [self.detailItems removeObjectAtIndex:IndexPath.row];
+        
+        [self.imageItems removeObjectAtIndex:IndexPath.row];
 
         NSMutableArray *indexPathArray = [NSMutableArray arrayWithObject:indexPath];
         
